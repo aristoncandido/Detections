@@ -1,0 +1,9 @@
+<rule id="100070" level="12">
+  <if_sid>91802</if_sid>
+  <field name="win.eventdata.image">\\powershell.exe$</field>
+  <field name="win.eventdata.commandLine">EncodedCommand</field>
+  <description>PowerShell EncodedCommand com execucao oculta - T1059.001</description>
+  <mitre>
+    <id>T1059.001</id>
+  </mitre>
+</rule>
