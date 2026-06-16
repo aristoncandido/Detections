@@ -1,0 +1,2 @@
+index=* ParentImage="*\\msiexec.exe" Image="*\\node.exe"
+| table _time, host, user, ParentImage, Image, CommandLine

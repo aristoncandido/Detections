@@ -1,0 +1,23 @@
+title: Node.js Spawned by MSI Installer
+id: 9c3e2b10-de05-0005
+description: Detecta node.exe iniciado por msiexec - padrao de instalador malicioso
+references:
+    - https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+    - https://attack.mitre.org/techniques/T1218/007/
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ParentImage|endswith: '\msiexec.exe'
+        Image|endswith: '\node.exe'
+    condition: selection
+falsepositives:
+    - Instaladores legítimos que empacotam Node.js (raro - baseline antes de alertar)
+level: high
+tags:
+    - attack.initial_access
+    - attack.t1218.007
+    - attack.t1059.007
+
+author:aristoncandido
