@@ -48,7 +48,7 @@ The **Pyramid of Pain** drives every rule: I detect at the behavior/TTP level, n
 ```
 detection-rules/
 ├── README.md
-├── 001-the-gentlemen-ransomware/      # case study: EtherRAT + TukTuk → The Gentlemen
+├── 002-the-gentlemen-ransomware/      # case study: EtherRAT + TukTuk → The Gentlemen
 │   ├── 1-intelligence.md              # source: DFIR Report flash alert
 │   ├── 2-research.md                  # TTPs, kill chain, Pyramid of Pain
 │   ├── rules/
