@@ -41,32 +41,6 @@ Every rule follows the same five-phase lifecycle:
 
 The **Pyramid of Pain** drives every rule: I detect at the behavior/TTP level, not at the hash or IP level. Hashes change in seconds; behaviors are expensive for an attacker to abandon.
 
----
-
-## Repository structure
-
-```
-detection-rules/
-├── README.md
-├── 002-the-gentlemen-ransomware/      # case study: EtherRAT + TukTuk → The Gentlemen
-│   ├── 1-intelligence.md              # source: DFIR Report flash alert
-│   ├── 2-research.md                  # TTPs, kill chain, Pyramid of Pain
-│   ├── rules/
-│   │   ├── msi-spawns-node.yml        # Sigma (source of truth)
-│   │   ├── msi-spawns-node.spl        # Splunk SPL
-│   │   ├── registry-run-key.yml
-│   │   ├── registry-run-key.spl
-│   │   ├── lsass-comsvcs-dump.yml
-│   │   ├── lsass-comsvcs-dump.spl
-│   │   ├── lsass-comsvcs-dump.xml     # Wazuh local_rules.xml
-│   │   ├── rmm-install.yml
-│   │   └── rmm-install.spl
-│   ├── 4-validation.md                # Atomic Red Team tests + screenshots
-│   └── 5-hunting.spl                  # retroactive hunting queries
-└── _template/                         # ADS-format template for new detections
-```
-
----
 
 ## Case study 001 — The Gentlemen Ransomware
 
