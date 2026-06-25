@@ -1,0 +1,38 @@
+title: Brute Force Detection - Multiple Failed Logins
+id: 8f2d1a40-de02-4c77-9b3e-1a6f50e2c4b7
+status: experimental
+description: Detects multiple failed login attempts from the same source within a short time frame, which may indicate a brute force attack (10 falhas em 1 min)
+references:
+  - https://attack.mitre.org/techniques/T1110/
+  - https://attack.mitre.org/techniques/T1110/001/
+  - https://attack.mitre.org/techniques/T1110/002/
+  - https://attack.mitre.org/techniques/T1110/003/
+  - https://attack.mitre.org/techniques/T1110/004/
+  - https://www.owasp.org/index.php/Brute_force_attack
+  - https://www.owasp.org/index.php/Authentication_Cheat_Sheet#Brute_Force_Attacks
+tags:
+  - attack.credential_access
+  - attack.t1110
+  - attack.t1110.001
+  - attack.t1110.002
+  - attack.t1110.003
+  - attack.t1110.004
+author: Ariston Cândido
+date: 2026-06-19
+logsource:
+  category: authentication
+  product: windows
+
+detection:
+  selection:
+    EventID: 4625  # An account failed to log on Event code from windows security logs
+    substatus: 0xc000006d # STATUS_LOGON_FAILURE
+
+
+  condition: selection | count(ComputerName) by UserName > 10
+
+falsepositives:
+    - Legitimate users forgetting their passwords
+    - Automated scripts or applications with incorrect credentials
+
+level: high

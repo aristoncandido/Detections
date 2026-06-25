@@ -1,0 +1,42 @@
+title: Login from Uncommun Country ##WHAT
+id: 8f2d1a40-de02-4c77-9b
+status: experimental
+description: Detects logins attempts from countries that are not commonly associated with the organization, which may indicate a potential security threat.
+references:
+  - https://attack.mitre.org/techniques/T1059/
+  - https://attack.mitre.org/techniques/T1059/002/
+tags:
+  - attack.credential_access  
+  - attack.t1059
+  - attack.t1059.002
+  - initial-access
+author: Ariston Cândido
+date: 2026-06-19
+
+logsource: ##WHERE
+  category: authentication
+  product: windows
+
+detection: ##WHO
+  selection:
+    EventID:
+      - 4625  # An account failed to log on Event code from windows security logs
+      - 4624  # An account failed/Sucessfully to log on Event code from windows security logs
+
+
+
+  filter: ##HOW
+    src_country: 
+       -'US', 
+       -'BR',
+       -'CA',
+       -'GB', 
+       -'DE'    # List of commonly associated countries from the organization
+
+  condition: selection and not filter 
+
+falsepositives:
+    - Legitimate travel by employees
+    - Use of VPNs with exit nodes in these countries
+
+level: medium
